@@ -1,0 +1,35 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SqlServer@2026"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  enterprise-api:
+    build:
+      context: ./backend/EnterpriseEmployeeSystem.sln/Employee.Api
+    container_name: enterprise-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlserver
+
+  employee-ui:
+    build:
+      context: ./frontend/employee-ui
+    container_name: employee-ui
+    ports:
+      - "4200:80"
+    depends_on:
+      - enterprise-api
+
+volumes:
+  sql_data:      
