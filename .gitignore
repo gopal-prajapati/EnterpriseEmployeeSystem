@@ -1,44 +1,89 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# =========================================
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Angular
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# =========================================
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+frontend/employee-ui/node_modules/
+frontend/employee-ui/dist/
+frontend/employee-ui/.angular/
+frontend/employee-ui/.vite/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/mcp.json
-.history/*
+# Angular logs
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
+frontend/employee-ui/npm-debug.log*
+frontend/employee-ui/yarn-debug.log*
+frontend/employee-ui/yarn-error.log*
 
-# System files
+# =========================================
+
+# .NET / ASP.NET Core
+
+# =========================================
+
+backend/**/bin/
+backend/**/obj/
+backend/**/TestResults/
+
+# User-specific files
+
+backend/**/*.user
+backend/**/*.suo
+backend/**/*.userosscache
+backend/**/*.sln.docstates
+
+# =========================================
+
+# Visual Studio / VS Code
+
+# =========================================
+
+.vs/
+.vscode/
+
+# =========================================
+
+# Docker
+
+# =========================================
+
+**/.dockerignore
+docker-compose.override.yml
+
+# =========================================
+
+# Logs
+
+# =========================================
+
+*.log
+logs/
+
+# =========================================
+
+# OS generated files
+
+# =========================================
+
 .DS_Store
 Thumbs.db
+Desktop.ini
+
+# =========================================
+
+# Environment / secrets
+
+# =========================================
+
+.env
+.env.*
+appsettings.Development.json
+
+# =========================================
+
+# SQL Server local files (if ever created)
+
+# =========================================
+
+*.mdf
+*.ldf

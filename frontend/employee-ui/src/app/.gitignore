@@ -1,0 +1,19 @@
+# Angular
+frontend/employee-ui/node_modules/
+frontend/employee-ui/dist/
+
+# .NET
+backend/**/bin/
+backend/**/obj/
+
+# Docker
+**/.dockerignore
+
+# VS Code
+.vscode/
+
+# Git
+.git
+
+# Logs
+*.log

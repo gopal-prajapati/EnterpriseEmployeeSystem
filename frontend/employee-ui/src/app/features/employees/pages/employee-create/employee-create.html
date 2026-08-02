@@ -1,0 +1,78 @@
+<h2>Add Employee</h2>
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>First Name</label><br>
+    <input type="text" formControlName="firstName">
+
+```
+@if (employeeForm.controls.firstName.invalid && employeeForm.controls.firstName.touched) {
+  <small>First Name is required</small>
+}
+```
+
+  </div>
+
+  <br>
+
+  <div>
+    <label>Last Name</label><br>
+    <input type="text" formControlName="lastName">
+
+```
+@if (employeeForm.controls.lastName.invalid && employeeForm.controls.lastName.touched) {
+  <small>Last Name is required</small>
+}
+```
+
+  </div>
+
+  <br>
+
+  <div>
+    <label>Email</label><br>
+    <input type="email" formControlName="email">
+
+```
+@if (employeeForm.controls.email.invalid && employeeForm.controls.email.touched) {
+  <small>Valid email is required</small>
+}
+```
+
+  </div>
+
+  <br>
+
+  <div>
+    <label>Department</label><br>
+    <input type="text" formControlName="department">
+
+```
+@if (employeeForm.controls.department.invalid && employeeForm.controls.department.touched) {
+  <small>Department is required</small>
+}
+```
+
+  </div>
+
+  <br>
+
+  <div>
+    <label>Salary</label><br>
+    <input type="number" formControlName="salary">
+
+```
+@if (employeeForm.controls.salary.invalid && employeeForm.controls.salary.touched) {
+  <small>Salary must be greater than 0</small>
+}
+```
+
+  </div>
+
+  <br>
+
+<button type="submit" [disabled]="employeeForm.invalid">
+Save Employee </button>
+
+</form>
