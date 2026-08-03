@@ -1,0 +1,52 @@
+﻿name: Build Docker Images
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---------- Build Angular ----------
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Angular dependencies
+        working-directory: frontend/employee-ui
+        run: npm install
+
+      - name: Build Angular app
+        working-directory: frontend/employee-ui
+        run: npm run build -- --configuration production
+
+      # ---------- Build .NET API ----------
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore .NET dependencies
+        working-directory: backend/EnterpriseEmployeeSystem.sln/Employee.Api
+        run: dotnet restore
+
+      - name: Build .NET API
+        working-directory: backend/EnterpriseEmployeeSystem.sln/Employee.Api
+        run: dotnet build --configuration Release --no-restore
+
+      # ---------- Build Docker images ----------
+      - name: Build API Docker image
+        run: docker build -t enterprise-api ./backend/EnterpriseEmployeeSystem.sln/Employee.Api
+
+      - name: Build Angular Docker image
+        run: docker build -t employee-ui ./frontend/employee-ui
