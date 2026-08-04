@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: enterprise-api-gopal
+  DOTNET_VERSION: '8.0.x'
+  PROJECT_PATH: backend/EnterpriseEmployeeSystem/EnterpriseEmployeeSystem.csproj
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,21 +22,21 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore dependencies
-        run: dotnet restore backend/EnterpriseEmployeeSystem.sln/Employee.Api/Employee.Api.csproj
+        run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - name: Build
-        run: dotnet build backend/EnterpriseEmployeeSystem.sln/Employee.Api/Employee.Api.csproj --configuration Release --no-restore
+        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish backend/EnterpriseEmployeeSystem.sln/Employee.Api/Employee.Api.csproj --configuration Release --output publish
+        run: dotnet publish ${{ env.PROJECT_PATH }} --configuration Release --no-build --output publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-app
+          name: api-publish
           path: publish
 
   deploy:
@@ -42,12 +47,12 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: api-app
+          name: api-publish
           path: publish
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: enterprise-api-gopal
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: publish
