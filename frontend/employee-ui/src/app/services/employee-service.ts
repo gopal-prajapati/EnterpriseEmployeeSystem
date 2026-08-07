@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class EmployeeService {
      private http = inject(HttpClient);
 
-  private apiUrl = 'https://enterprise-api-gopal-aubaffcee0ehaebu.centralindia-01.azurewebsites.net/api/employees';
+  private apiUrl = '/api/employees';
 
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.apiUrl);
