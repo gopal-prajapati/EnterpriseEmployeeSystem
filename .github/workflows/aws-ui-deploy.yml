@@ -16,7 +16,7 @@ env:
   AWS_REGION: ap-south-1
   ECR_REPOSITORY: employee-ui
   ECS_CLUSTER: gopal-employee-cluster
-  ECS_SERVICE: employee-ui-service
+  ECS_SERVICE: employee-ui-task
   ECS_TASK_DEFINITION_FAMILY: employee-ui-task
   CONTAINER_NAME: employee-ui
 
