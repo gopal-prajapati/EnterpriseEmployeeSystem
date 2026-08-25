@@ -17,6 +17,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Server=sqlserver,1433;Database=EnterpriseEmployeeDb;User Id=sa;Password=SqlServer@2026;TrustServerCertificate=True;Encrypt=False;
     ports:
       - "8080:8080"
     depends_on:
