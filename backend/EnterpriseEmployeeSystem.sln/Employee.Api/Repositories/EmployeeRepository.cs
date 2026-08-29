@@ -32,5 +32,11 @@ namespace EnterpriseEmployeeSystem.Api.Repositories
            
         }
 
+        public async Task<bool> ExistsAsync(int employeeId)
+        {
+            return await _context.Employees
+                .AnyAsync(x => x.Id == employeeId);
+        }
+
     }
 }

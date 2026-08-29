@@ -6,5 +6,6 @@ namespace EnterpriseEmployeeSystem.Api.Repositories
     {
        Task<List<Employee>> GetAllAsync();
         Task AddAsync(Employee employee);
+        Task<bool> ExistsAsync(int employeeId);
     }
 }
