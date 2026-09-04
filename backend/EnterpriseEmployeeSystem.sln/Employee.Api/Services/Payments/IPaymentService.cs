@@ -7,5 +7,10 @@ namespace EnterpriseEmployeeSystem.Api.Services.Payments
     {
         Task<Payment> CreatePaymentAsync(CreatePaymentRequest request);
 
+        Task VerifyPaymentAsync(VerifyPaymentRequest request);
+
+        Task CompletePaymentAsync(
+    Payment payment,
+    string razorpayPaymentId);
     }
 }

@@ -3,6 +3,7 @@ import { Layout } from './layout/layout/layout';
 import { Dashboard } from './features/dashboard/pages/dashboard/dashboard';
 import { EmployeeList } from './features/employees/pages/employee-list/employee-list';
 import { EmployeeCreate } from './features/employees/pages/employee-create/employee-create';
+import { Purchase } from './features/purchase/purchase';
 
 export const routes: Routes = [
     {
@@ -16,6 +17,10 @@ export const routes: Routes = [
       {
         path: 'employees',
         component: EmployeeList
+      },
+      {
+      path: 'purchase',
+      component: Purchase
       },
       { path: 'employees/create', component: EmployeeCreate },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }

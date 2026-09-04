@@ -4,6 +4,7 @@ using EnterpriseEmployeeSystem.Api.Repositories;
 using EnterpriseEmployeeSystem.Api.Repositories.Payments;
 using EnterpriseEmployeeSystem.Api.Repositories.Products;
 using EnterpriseEmployeeSystem.Api.Repositories.Purchases;
+using EnterpriseEmployeeSystem.Api.Repositories.Webhook;
 using EnterpriseEmployeeSystem.Api.Services;
 using EnterpriseEmployeeSystem.Api.Services.Payments;
 using EnterpriseEmployeeSystem.Api.Services.Purchases;
@@ -41,6 +42,8 @@ builder.Services.AddHttpClient<RazorpayPaymentGateway>(client =>
 
 builder.Services.AddScoped<IPaymentGateway>(provider =>
     provider.GetRequiredService<RazorpayPaymentGateway>());
+
+builder.Services.AddScoped<IWebhookEventRepository, WebhookEventRepository>();
 
 //builder.Services.AddDbContext<AppDbContext>(options =>
 //    options.UseSqlServer(

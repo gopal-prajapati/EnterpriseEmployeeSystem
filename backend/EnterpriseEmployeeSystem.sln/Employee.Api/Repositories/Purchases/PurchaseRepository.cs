@@ -29,5 +29,14 @@ namespace EnterpriseEmployeeSystem.Api.Repositories.Purchases
                 .FirstOrDefaultAsync(x => x.Id == purchaseId);
         }
 
+        public async Task<Purchase> UpdateAsync(Purchase purchase)
+        {
+            _dbContext.Purchases.Update(purchase);
+
+            await _dbContext.SaveChangesAsync();
+
+            return purchase;
+        }
+
     }
 }

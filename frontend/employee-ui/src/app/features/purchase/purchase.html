@@ -1,0 +1,53 @@
+<h2>Purchase</h2>
+
+@if (product()) {
+
+  <div>
+
+    <h3>{{ product()!.name }}</h3>
+
+    <p>
+      Product Code:
+      {{ product()!.itemCode }}
+    </p>
+
+    <p>
+      Price:
+      ₹{{ product()!.price }}
+    </p>
+
+    <p>
+      Currency:
+      {{ product()!.currency }}
+    </p>
+
+  </div>
+
+} @else {
+
+  <p>Loading product...</p>
+
+}
+
+@if (!purchaseId()) {
+
+  <button
+    type="button"
+    (click)="createPurchase()">
+    Create Purchase
+  </button>
+
+} @else {
+
+  <p>
+    Purchase created successfully.
+    Purchase Id: {{ purchaseId() }}
+  </p>
+
+  <button
+  type="button"
+  (click)="payNow()">
+  Pay Now
+</button>
+
+}

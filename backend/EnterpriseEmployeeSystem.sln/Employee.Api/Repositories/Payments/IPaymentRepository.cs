@@ -10,5 +10,9 @@ namespace EnterpriseEmployeeSystem.Api.Repositories.Payments
 
         Task<Payment> UpdateAsync(Payment payment);
 
+        Task<Payment?> GetByIdAsync(int paymentId);
+
+        Task<Payment?> GetByGatewayOrderIdAsync(string gatewayOrderId);
+
     }
 }

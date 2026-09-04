@@ -8,5 +8,7 @@ namespace EnterpriseEmployeeSystem.Api.Repositories.Purchases
 
         Task<Purchase?> GetByIdAsync(int purchaseId);
 
+        Task<Purchase> UpdateAsync(Purchase purchase);
+
     }
 }

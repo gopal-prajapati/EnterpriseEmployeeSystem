@@ -37,5 +37,19 @@ namespace EnterpriseEmployeeSystem.Api.Repositories.Payments
             return payment;
         }
 
+        public async Task<Payment?> GetByIdAsync(int paymentId)
+        {
+            return await _dbContext.Payments
+                .FirstOrDefaultAsync(x => x.Id == paymentId);
+        }
+
+        public async Task<Payment?> GetByGatewayOrderIdAsync(
+    string gatewayOrderId)
+        {
+            return await _dbContext.Payments
+                .FirstOrDefaultAsync(x =>
+                    x.GatewayOrderId == gatewayOrderId);
+        }
+
     }
 }

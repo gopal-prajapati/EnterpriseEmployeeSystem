@@ -16,6 +16,8 @@ namespace EnterpriseEmployeeSystem.Api.Data
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<WebhookEvent> WebhookEvents { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -113,6 +115,22 @@ namespace EnterpriseEmployeeSystem.Api.Data
         CreatedAtUtc = new DateTime(2026, 8, 28, 0, 0, 0, DateTimeKind.Utc),
         UpdatedAtUtc = new DateTime(2026, 8, 28, 0, 0, 0, DateTimeKind.Utc)
     });
+            });
+
+            modelBuilder.Entity<WebhookEvent>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.EventId)
+                    .HasMaxLength(200)
+                    .IsRequired();
+
+                entity.Property(x => x.EventType)
+                    .HasMaxLength(100)
+                    .IsRequired();
+
+                entity.HasIndex(x => x.EventId)
+                    .IsUnique();
             });
         }
 
